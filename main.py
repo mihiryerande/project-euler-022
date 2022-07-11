@@ -17,19 +17,24 @@
 #
 #     What is the total of all the name scores in the file?
 
+from typing import List
+
 # Delta to convert from ordinal char value to uppercase letter's number value
 ORD_BASE = ord('A') - 1
 
 
-def read_names(filename):
+def read_names(filename: str) -> List[str]:
     """
-    Returns the list of names from `filename`
+    Returns the list of names from `filename`.
 
     Args:
         filename (str): File containing list of names
 
     Returns:
-        List[str] of names from `filename`
+        (List[str]): Names from `filename`
+
+    Raises:
+        AssertError: if incorrect args are given
     """
     with open(filename, 'r') as f:
         names = [name.strip('"').upper() for name in f.readline().strip().split(',')]
@@ -37,7 +42,7 @@ def read_names(filename):
         return names
 
 
-def alphabet_score(name):
+def alphabet_score(name: str) -> int:
     """
     Given an uppercase name,
       return the 'alphabet score' of the name,
@@ -47,21 +52,27 @@ def alphabet_score(name):
         name (str): A name
 
     Returns:
-        Alphabet score of name
+        (int): Alphabet score of name
+
+    Raises:
+        AssertError: if incorrect args are given
     """
     global ORD_BASE
     return sum(map(lambda c: ord(c) - ORD_BASE, list(name)))
 
 
-def main(filename):
+def main(filename: str) -> int:
     """
     Returns the sum of all the 'name scores' in the given `filename`.
 
     Args:
-        filename (str): Name of file containing names
+        filename (str): File containing names
 
     Returns:
-        Sum of all name scores in `filename`
+        (int): Sum of all name scores in `filename`
+
+    Raises:
+        AssertError: if incorrect args are given
     """
     assert type(filename) == str
 
